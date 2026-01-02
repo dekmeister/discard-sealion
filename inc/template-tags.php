@@ -18,8 +18,7 @@ function cd_sealion_get_artist( $post_id = 0 ) {
 		$post_id = get_the_ID();
 	}
 
-	$artist = get_post_meta( $post_id, 'cd_artist', true );
-	return $artist ? $artist : '';
+	return get_the_excerpt( $post_id );
 }
 
 /**
@@ -33,8 +32,13 @@ function cd_sealion_get_verdict( $post_id = 0 ) {
 		$post_id = get_the_ID();
 	}
 
-	$verdict = get_post_meta( $post_id, 'cd_verdict', true );
-	return $verdict ? $verdict : '';
+	if ( has_category( 'keep', $post_id ) ) {
+		return 'keep';
+	}
+	if ( has_category( 'delete', $post_id ) ) {
+		return 'delete';
+	}
+	return '';
 }
 
 /**

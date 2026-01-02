@@ -40,6 +40,9 @@ function cd_sealion_setup() {
 		'style',
 		'script',
 	) );
+
+	// Enable excerpt support for posts
+	add_post_type_support( 'post', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'cd_sealion_setup' );
 
@@ -58,8 +61,36 @@ function cd_sealion_scripts() {
 add_action( 'wp_enqueue_scripts', 'cd_sealion_scripts' );
 
 /**
- * Load custom field registration and meta boxes
+ * Create verdict categories on theme activation
  */
-require get_template_directory() . '/inc/custom-fields.php';
-require get_template_directory() . '/inc/meta-boxes.php';
+function cd_sealion_create_verdict_categories() {
+	// Create "Keep" category
+	if ( ! term_exists( 'Keep', 'category' ) ) {
+		wp_insert_term(
+			'Keep',
+			'category',
+			array(
+				'slug'        => 'keep',
+				'description' => 'CDs to keep in the collection',
+			)
+		);
+	}
+
+	// Create "Delete" category
+	if ( ! term_exists( 'Delete', 'category' ) ) {
+		wp_insert_term(
+			'Delete',
+			'category',
+			array(
+				'slug'        => 'delete',
+				'description' => 'CDs to discard from the collection',
+			)
+		);
+	}
+}
+add_action( 'after_switch_theme', 'cd_sealion_create_verdict_categories' );
+
+/**
+ * Load template tags
+ */
 require get_template_directory() . '/inc/template-tags.php';
