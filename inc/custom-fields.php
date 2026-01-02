@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom field registration for CD Collection theme
+ * Custom field registration for Discard Sealion theme
  *
  * Registers custom post meta fields for CD reviews:
  * - cd_artist: Artist/band name
