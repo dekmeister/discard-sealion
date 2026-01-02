@@ -1,0 +1,29 @@
+cd-collection/
+│
+├── style.css                  # Theme metadata + main styles
+├── functions.php              # Theme setup, custom fields, enqueues
+├── index.php                  # Fallback template (required)
+├── screenshot.png             # Theme preview (880x660px recommended)
+│
+├── front-page.php             # Homepage grid template
+├── single.php                 # Single CD review template
+├── page.php                   # Generic page template (About page)
+├── header.php                 # Site header (title, nav, icon)
+├── footer.php                 # Site footer (basic credits)
+├── comments.php               # Comments template
+│
+├── template-parts/
+│   ├── content-grid-item.php  # Single grid item (CD cover tile)
+│   ├── content-single-cd.php  # Single post content structure
+│   └── content-none.php       # "No posts found" message
+│
+├── inc/
+│   ├── custom-fields.php      # Register meta (artist, verdict)
+│   ├── meta-boxes.php         # Admin meta box UI
+│   └── template-tags.php      # Helper functions for templates
+│
+├── assets/
+│   └── images/
+│       └── placeholder.png    # Fallback when no featured image
+│
+└── README.md                  # Project documentation
