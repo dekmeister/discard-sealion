@@ -42,12 +42,19 @@ This is a personal WordPress theme for cataloguing CD reviews. The owner has Wor
 |------|---------|
 | `style.css` | Theme header + ALL styles (single stylesheet) |
 | `functions.php` | Theme setup, includes, enqueues |
+| `index.php` | Fallback template (required by WordPress) |
+| `header.php` | Site header with navigation |
+| `footer.php` | Site footer |
 | `front-page.php` | Homepage with CSS Grid of CD covers |
 | `single.php` | Individual CD review display |
-| `page.php` | Static pages (About) |
+| `page.php` | Static pages (About, etc.) |
+| `comments.php` | Comment list and form |
 | `inc/custom-fields.php` | Register `cd_artist` and `cd_verdict` meta |
 | `inc/meta-boxes.php` | Admin UI for custom fields |
 | `inc/template-tags.php` | Reusable template functions |
+| `template-parts/content-grid-item.php` | Grid item for homepage |
+| `template-parts/content-single-cd.php` | Single CD review content |
+| `template-parts/content-none.php` | Empty state message |
 
 ## Custom Fields Reference
 
@@ -92,14 +99,23 @@ About Page:   page.php → index.php
 
 Local development testing:
 ```bash
-# Access WordPress container
-docker exec -it <container_name> bash
+# Clear existing staging directory
+rm -r /mnt/server/Server/wordpress/backup/
 
-# Check PHP syntax
-php -l wp-content/themes/cd-collection/functions.php
+# Copy all theme files to staging directory
+cp -r /mnt/server/Projects/2026/CD-sealion/{*.php,*.css,screenshot.png,inc,template-parts,assets} /mnt/server/Server/wordpress/backup/wordpress-files/wp-content/themes/cd-collection/
 
-# Check all PHP files
-find wp-content/themes/cd-collection -name "*.php" -exec php -l {} \;
+# Start Docker WordPress instance
+docker compose -f /mnt/server/Server/wordpress/docker-compose.yml up -d
+
+# Install theme to Docker container
+cd /mnt/server/Server/wordpress && ./wordpress_theme_install.sh
+
+# Access site at http://localhost:8080
+# WordPress admin at http://localhost:8080/wp-admin
+
+# Stop Docker when done
+docker compose -f /mnt/server/Server/wordpress/docker-compose.yml down
 ```
 
 ## Code Review Checklist

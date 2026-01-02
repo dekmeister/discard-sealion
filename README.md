@@ -95,10 +95,10 @@ Modern browsers with CSS Grid support (all browsers from 2017+). No IE11 support
 
 ## File Naming Conventions
 
-- PHP files: lowercase with hyphens (`single-post.php`)
-- CSS files: lowercase with hyphens (`theme-styles.css`)
-- Template parts: prefixed with purpose (`part-cd-grid-item.php`)
-- Asset folders: lowercase (`assets/`, `css/`, `images/`)
+- PHP files: lowercase with hyphens (`single.php`, `front-page.php`)
+- CSS files: lowercase with hyphens (`style.css`)
+- Template parts: prefixed with `content-` (`content-grid-item.php`, `content-single-cd.php`)
+- Asset folders: lowercase (`assets/`, `images/`)
 
 ## WordPress Coding Standards
 
