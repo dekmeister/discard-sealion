@@ -2,7 +2,7 @@
 /**
  * The template for displaying single posts (CD reviews)
  *
- * @package CD_Collection
+ * @package CD_Sealion
  */
 
 get_header();

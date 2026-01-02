@@ -6,13 +6,13 @@
  * - cd_artist: Artist/band name
  * - cd_verdict: Keep or Delete verdict
  *
- * @package CD_Collection
+ * @package CD_Sealion
  */
 
 /**
  * Register custom post meta fields
  */
-function cd_collection_register_post_meta() {
+function cd_sealion_register_post_meta() {
 	// Register artist field
 	register_post_meta(
 		'post',
@@ -34,12 +34,12 @@ function cd_collection_register_post_meta() {
 			'type'              => 'string',
 			'description'       => 'Keep or Delete verdict for the CD',
 			'single'            => true,
-			'sanitize_callback' => 'cd_collection_sanitize_verdict',
+			'sanitize_callback' => 'cd_sealion_sanitize_verdict',
 			'show_in_rest'      => true,
 		)
 	);
 }
-add_action( 'init', 'cd_collection_register_post_meta' );
+add_action( 'init', 'cd_sealion_register_post_meta' );
 
 /**
  * Sanitize verdict field value
@@ -49,7 +49,7 @@ add_action( 'init', 'cd_collection_register_post_meta' );
  * @param string $value The input value to sanitize
  * @return string Sanitized value (keep/delete) or empty string
  */
-function cd_collection_sanitize_verdict( $value ) {
+function cd_sealion_sanitize_verdict( $value ) {
 	$value = sanitize_key( $value );
 
 	// Whitelist check - only allow 'keep' or 'delete'

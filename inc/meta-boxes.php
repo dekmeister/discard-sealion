@@ -4,32 +4,32 @@
  *
  * Provides admin interface for editing CD artist and verdict
  *
- * @package CD_Collection
+ * @package CD_Sealion
  */
 
 /**
  * Add meta box to post editor
  */
-function cd_collection_add_meta_boxes() {
+function cd_sealion_add_meta_boxes() {
 	add_meta_box(
-		'cd_collection_details',
+		'cd_sealion_details',
 		'CD Details',
-		'cd_collection_meta_box_callback',
+		'cd_sealion_meta_box_callback',
 		'post',
 		'side',
 		'high'
 	);
 }
-add_action( 'add_meta_boxes', 'cd_collection_add_meta_boxes' );
+add_action( 'add_meta_boxes', 'cd_sealion_add_meta_boxes' );
 
 /**
  * Render meta box content
  *
  * @param WP_Post $post Current post object
  */
-function cd_collection_meta_box_callback( $post ) {
+function cd_sealion_meta_box_callback( $post ) {
 	// Add nonce for security
-	wp_nonce_field( 'cd_collection_save_meta', 'cd_collection_meta_nonce' );
+	wp_nonce_field( 'cd_sealion_save_meta', 'cd_sealion_meta_nonce' );
 
 	// Get current values
 	$artist  = get_post_meta( $post->ID, 'cd_artist', true );
@@ -68,10 +68,10 @@ function cd_collection_meta_box_callback( $post ) {
  *
  * @param int $post_id Post ID
  */
-function cd_collection_save_meta_box( $post_id ) {
+function cd_sealion_save_meta_box( $post_id ) {
 	// Verify nonce
-	if ( ! isset( $_POST['cd_collection_meta_nonce'] ) ||
-	     ! wp_verify_nonce( $_POST['cd_collection_meta_nonce'], 'cd_collection_save_meta' ) ) {
+	if ( ! isset( $_POST['cd_sealion_meta_nonce'] ) ||
+	     ! wp_verify_nonce( $_POST['cd_sealion_meta_nonce'], 'cd_sealion_save_meta' ) ) {
 		return;
 	}
 
@@ -108,4 +108,4 @@ function cd_collection_save_meta_box( $post_id ) {
 		delete_post_meta( $post_id, 'cd_verdict' );
 	}
 }
-add_action( 'save_post', 'cd_collection_save_meta_box' );
+add_action( 'save_post', 'cd_sealion_save_meta_box' );

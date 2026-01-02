@@ -2,7 +2,7 @@
 /**
  * The template for displaying comments
  *
- * @package CD_Collection
+ * @package CD_Sealion
  */
 
 if ( post_password_required() ) {
@@ -17,11 +17,11 @@ if ( post_password_required() ) {
 			<?php
 			$comment_count = get_comments_number();
 			if ( 1 === $comment_count ) {
-				esc_html_e( '1 Comment', 'cd-collection' );
+				esc_html_e( '1 Comment', 'cd-sealion' );
 			} else {
 				printf(
 					/* translators: %s: comment count number. */
-					esc_html( _nx( '%s Comment', '%s Comments', $comment_count, 'comments title', 'cd-collection' ) ),
+					esc_html( _nx( '%s Comment', '%s Comments', $comment_count, 'comments title', 'cd-sealion' ) ),
 					esc_html( number_format_i18n( $comment_count ) )
 				);
 			}
@@ -45,7 +45,7 @@ if ( post_password_required() ) {
 
 		if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 			?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'cd-collection' ); ?></p>
+			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'cd-sealion' ); ?></p>
 			<?php
 		endif;
 		?>

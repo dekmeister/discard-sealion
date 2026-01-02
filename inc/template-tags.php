@@ -4,7 +4,7 @@
  *
  * Reusable template functions for displaying CD information
  *
- * @package CD_Collection
+ * @package CD_Sealion
  */
 
 /**
@@ -13,7 +13,7 @@
  * @param int $post_id Optional. Post ID. Defaults to current post.
  * @return string Artist name or empty string
  */
-function cd_collection_get_artist( $post_id = 0 ) {
+function cd_sealion_get_artist( $post_id = 0 ) {
 	if ( ! $post_id ) {
 		$post_id = get_the_ID();
 	}
@@ -28,7 +28,7 @@ function cd_collection_get_artist( $post_id = 0 ) {
  * @param int $post_id Optional. Post ID. Defaults to current post.
  * @return string Verdict ('keep' or 'delete') or empty string
  */
-function cd_collection_get_verdict( $post_id = 0 ) {
+function cd_sealion_get_verdict( $post_id = 0 ) {
 	if ( ! $post_id ) {
 		$post_id = get_the_ID();
 	}
@@ -45,8 +45,8 @@ function cd_collection_get_verdict( $post_id = 0 ) {
  * @param int $post_id Optional. Post ID. Defaults to current post.
  * @return string HTML for the verdict display
  */
-function cd_collection_verdict_display( $post_id = 0 ) {
-	$verdict = cd_collection_get_verdict( $post_id );
+function cd_sealion_verdict_display( $post_id = 0 ) {
+	$verdict = cd_sealion_get_verdict( $post_id );
 
 	if ( 'keep' === $verdict ) {
 		return '<span class="verdict verdict-keep">Keep It</span>';
@@ -63,8 +63,8 @@ function cd_collection_verdict_display( $post_id = 0 ) {
  *
  * @param int $post_id Optional. Post ID. Defaults to current post.
  */
-function cd_collection_the_artist( $post_id = 0 ) {
-	$artist = cd_collection_get_artist( $post_id );
+function cd_sealion_the_artist( $post_id = 0 ) {
+	$artist = cd_sealion_get_artist( $post_id );
 
 	if ( $artist ) {
 		echo '<p class="cd-artist">' . esc_html( $artist ) . '</p>';
@@ -76,8 +76,8 @@ function cd_collection_the_artist( $post_id = 0 ) {
  *
  * @param int $post_id Optional. Post ID. Defaults to current post.
  */
-function cd_collection_the_verdict( $post_id = 0 ) {
-	$verdict_html = cd_collection_verdict_display( $post_id );
+function cd_sealion_the_verdict( $post_id = 0 ) {
+	$verdict_html = cd_sealion_verdict_display( $post_id );
 
 	if ( $verdict_html ) {
 		echo '<div class="cd-verdict">' . $verdict_html . '</div>';
