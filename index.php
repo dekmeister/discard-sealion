@@ -6,7 +6,7 @@
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
  *
- * @package CD_Sealion
+ * @package Discard_Sealion
  */
 
 get_header();
@@ -25,7 +25,7 @@ if ( have_posts() ) :
 	endwhile;
 else :
 	?>
-	<p><?php esc_html_e( 'No content found.', 'cd-sealion' ); ?></p>
+	<p><?php esc_html_e( 'No content found.', 'discard-sealion' ); ?></p>
 	<?php
 endif;
 ?>

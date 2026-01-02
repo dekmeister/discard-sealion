@@ -1,8 +1,8 @@
 <?php
 /**
- * CD Sealion Theme Functions
+ * Discard Sealion Theme Functions
  *
- * @package CD_Sealion
+ * @package Discard_Sealion
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Theme setup
  */
-function cd_sealion_setup() {
+function discard_sealion_setup() {
 	// Add default posts and comments RSS feed links to head
 	add_theme_support( 'automatic-feed-links' );
 
@@ -44,26 +44,26 @@ function cd_sealion_setup() {
 	// Enable excerpt support for posts
 	add_post_type_support( 'post', 'excerpt' );
 }
-add_action( 'after_setup_theme', 'cd_sealion_setup' );
+add_action( 'after_setup_theme', 'discard_sealion_setup' );
 
 /**
  * Enqueue scripts and styles
  */
-function cd_sealion_scripts() {
+function discard_sealion_scripts() {
 	// Enqueue theme stylesheet
 	wp_enqueue_style(
-		'cd-sealion-style',
+		'discard-sealion-style',
 		get_stylesheet_uri(),
 		array(),
 		wp_get_theme()->get( 'Version' )
 	);
 }
-add_action( 'wp_enqueue_scripts', 'cd_sealion_scripts' );
+add_action( 'wp_enqueue_scripts', 'discard_sealion_scripts' );
 
 /**
  * Create verdict categories on theme activation
  */
-function cd_sealion_create_verdict_categories() {
+function discard_sealion_create_verdict_categories() {
 	// Create "Keep" category
 	if ( ! term_exists( 'Keep', 'category' ) ) {
 		wp_insert_term(
@@ -88,7 +88,7 @@ function cd_sealion_create_verdict_categories() {
 		);
 	}
 }
-add_action( 'after_switch_theme', 'cd_sealion_create_verdict_categories' );
+add_action( 'after_switch_theme', 'discard_sealion_create_verdict_categories' );
 
 /**
  * Load template tags

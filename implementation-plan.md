@@ -48,9 +48,9 @@ Delete `inc/meta-boxes.php` - custom meta box UI no longer needed. WordPress pro
 
 Update `inc/template-tags.php` to use excerpt and categories:
 
-**cd_sealion_get_artist():**
+**discard_sealion_get_artist():**
 ```php
-function cd_sealion_get_artist($post_id = 0) {
+function discard_sealion_get_artist($post_id = 0) {
     if (!$post_id) {
         $post_id = get_the_ID();
     }
@@ -58,9 +58,9 @@ function cd_sealion_get_artist($post_id = 0) {
 }
 ```
 
-**cd_sealion_get_verdict():**
+**discard_sealion_get_verdict():**
 ```php
-function cd_sealion_get_verdict($post_id = 0) {
+function discard_sealion_get_verdict($post_id = 0) {
     if (!$post_id) {
         $post_id = get_the_ID();
     }
@@ -74,7 +74,7 @@ function cd_sealion_get_verdict($post_id = 0) {
 }
 ```
 
-**cd_sealion_verdict_display()** - logic remains the same, just uses updated `cd_sealion_get_verdict()`.
+**discard_sealion_verdict_display()** - logic remains the same, just uses updated `discard_sealion_get_verdict()`.
 
 ### Step 5: Update functions.php
 

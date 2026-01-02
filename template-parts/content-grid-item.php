@@ -4,7 +4,7 @@
  *
  * Displays the featured image as a clickable grid item
  *
- * @package CD_Sealion
+ * @package Discard_Sealion
  */
 
 ?>

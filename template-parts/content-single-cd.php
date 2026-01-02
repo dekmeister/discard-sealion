@@ -2,7 +2,7 @@
 /**
  * Template part for displaying single CD review
  *
- * @package CD_Sealion
+ * @package Discard_Sealion
  */
 
 ?>
@@ -23,7 +23,7 @@
 				<h1 class="cd-single-title"><?php the_title(); ?></h1>
 
 				<?php
-				$artist = cd_sealion_get_artist();
+				$artist = discard_sealion_get_artist();
 				if ( $artist ) :
 					?>
 					<p class="cd-single-artist"><?php echo esc_html( $artist ); ?></p>
@@ -32,7 +32,7 @@
 				?>
 
 				<?php
-				$verdict_html = cd_sealion_verdict_display();
+				$verdict_html = discard_sealion_verdict_display();
 				if ( $verdict_html ) :
 					?>
 					<div class="cd-single-verdict">

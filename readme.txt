@@ -1,4 +1,4 @@
-=== CD Sealion ===
+=== Discard Sealion ===
 Contributors: declanwalsh
 Tags: blog, custom-background, custom-logo, featured-images, grid-layout, one-column, theme-options, threaded-comments
 Requires at least: 6.0
@@ -12,7 +12,7 @@ A minimal WordPress theme for cataloguing and reviewing CD collections with a si
 
 == Description ==
 
-CD Sealion is a custom WordPress theme designed for music enthusiasts who want to catalogue and review their CD collections. The theme features a clean, Instagram-style grid layout for the homepage and individual review pages with custom verdict fields.
+Discard Sealion is a custom WordPress theme designed for music enthusiasts who want to catalogue and review their CD collections. The theme features a clean, Instagram-style grid layout for the homepage and individual review pages with custom verdict fields.
 
 Key Features:
 
@@ -35,7 +35,7 @@ Design Highlights:
 
 == Installation ==
 
-1. Upload the theme files to `/wp-content/themes/cd-sealion/`
+1. Upload the theme files to `/wp-content/themes/discard-sealion/`
 2. Activate the theme through the 'Appearance > Themes' menu in WordPress
 3. Configure your site title in Settings → General
 4. Set your site icon in Appearance → Customize
@@ -86,8 +86,8 @@ These fields appear in the post editor sidebar when creating or editing posts.
 
 == Copyright ==
 
-CD Sealion WordPress Theme, Copyright 2026
-CD Sealion is distributed under the terms of private use only.
+Discard Sealion WordPress Theme, Copyright 2026
+Discard Sealion is distributed under the terms of private use only.
 
 == Credits ==
 

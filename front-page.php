@@ -4,7 +4,7 @@
  *
  * Displays the homepage with a grid of CD covers
  *
- * @package CD_Sealion
+ * @package Discard_Sealion
  */
 
 get_header();
