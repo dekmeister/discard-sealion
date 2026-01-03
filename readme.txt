@@ -8,18 +8,20 @@ Stable tag: 1.0.0
 License: Private Use
 License URI:
 
-A minimal WordPress theme for cataloguing and reviewing CD collections with a simple "Keep It / Delete It" verdict system.
+A minimal WordPress theme for cataloguing and reviewing CD collections with a simple "Kept / Deleted" verdict system.
 
 == Description ==
 
-Discard Sealion is a custom WordPress theme designed for music enthusiasts who want to catalogue and review their CD collections. The theme features a clean, Instagram-style grid layout for the homepage and individual review pages with custom verdict fields.
+Discard Sealion is a custom WordPress theme designed for music enthusiasts who want to catalogue and review their CD collections. The theme features a clean, Instagram-style grid layout for the homepage and individual review pages with verdict display.
 
 Key Features:
 
 * Responsive grid homepage displaying CD cover artwork
 * Individual review pages with album information, verdict, and thoughts
-* Custom "Keep It / Delete It" verdict field with colour coding (green for keep, red for delete)
-* Artist custom field for easy metadata management
+* Verdict display showing "Kept" (green) or "Deleted" (red) status
+* Artist field using WordPress excerpt
+* Verdict filtering via category pages
+* Footer statistics showing total Kept and Deleted counts with links to filtered views
 * Standard WordPress comments support on reviews
 * About page template support
 * Built-in RSS feed via WordPress core
@@ -45,7 +47,7 @@ Design Highlights:
 
 = How do I add a CD review? =
 
-Create a new post, add the album title as the post title, fill in the Artist and Verdict custom fields in the editor, upload the CD cover as the featured image, and write your review in the content area.
+Create a new post with the album title as the post title. Add the artist name in the Excerpt field, assign the post to either the "Keep" or "Delete" category, upload the CD cover as the featured image, and write your review in the content area.
 
 = What image size should I use for CD covers? =
 
@@ -53,11 +55,15 @@ Square images work best for the grid layout. WordPress will automatically create
 
 = Can I filter by verdict (Keep/Delete)? =
 
-Not in version 1.0. This feature may be added in future releases.
+Yes. Click the "X Kept" or "Y Deleted" links in the footer to view filtered lists of CDs by verdict. You can also access these via the category archives.
 
 = Does this theme support custom post types? =
 
 No, CD reviews use standard WordPress posts to leverage built-in features like comments, RSS feeds, and the familiar editing interface.
+
+= Where do I enter the artist name? =
+
+The artist name is stored in the WordPress excerpt field. You can find this field in the post editor sidebar (it may need to be enabled via the three-dot menu → Preferences → Panels → Excerpt).
 
 == Changelog ==
 
@@ -65,24 +71,34 @@ No, CD reviews use standard WordPress posts to leverage built-in features like c
 * Initial release
 * Grid homepage with responsive CD cover layout
 * Single post template for CD reviews
-* Custom meta boxes for Artist and Verdict fields
+* Artist field using WordPress excerpt
+* Verdict system using WordPress categories (Keep/Delete)
+* Category archive pages with grid layout
+* Footer statistics with verdict counts and filter links
 * About page template
 * Comments support
 * Mobile, tablet, and desktop responsive design
+* Automatic category creation on theme activation
 
 == Upgrade Notice ==
 
 = 1.0.0 =
 Initial release.
 
-== Custom Fields ==
+== Data Storage ==
 
-This theme adds two custom fields to posts:
+This theme uses WordPress built-in features for data storage:
 
-* Artist (cd_artist): Text field for the artist or band name
-* Verdict (cd_verdict): Dropdown with "Keep It" or "Delete It" options
+* **Artist**: Stored in the WordPress excerpt field. Access via the Excerpt panel in the post editor.
+* **Verdict**: Stored as WordPress categories. Two categories are automatically created on theme activation:
+  - "Keep" - for CDs to keep in the collection
+  - "Delete" - for CDs to discard from the collection
+* **Album Title**: Standard WordPress post title
+* **Review**: Standard WordPress post content
+* **Cover Art**: WordPress featured image
+* **Date Reviewed**: WordPress post date
 
-These fields appear in the post editor sidebar when creating or editing posts.
+The theme displays verdicts as "Kept" (green) or "Deleted" (red) on individual CD pages and provides category archive pages to view filtered lists.
 
 == Copyright ==
 
