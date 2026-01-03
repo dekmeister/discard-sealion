@@ -53,9 +53,9 @@ function discard_sealion_verdict_display( $post_id = 0 ) {
 	$verdict = discard_sealion_get_verdict( $post_id );
 
 	if ( 'keep' === $verdict ) {
-		return '<span class="verdict verdict-keep">Keep It</span>';
+		return '<span class="verdict verdict-keep">Kept</span>';
 	} elseif ( 'delete' === $verdict ) {
-		return '<span class="verdict verdict-delete">Delete It</span>';
+		return '<span class="verdict verdict-delete">Deleted</span>';
 	} else {
 		// No verdict set - show pending
 		return '<span class="verdict verdict-pending">Verdict Pending</span>';
