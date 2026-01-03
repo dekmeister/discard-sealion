@@ -1,15 +1,19 @@
 /*
 Theme Name: Discard Sealion
-Theme URI: https://example.com
-Author: Your Name
-Author URI: https://example.com
-Description: A minimal WordPress theme for cataloguing and reviewing CD collections with a simple "Keep It / Delete It" verdict system.
+Theme URI: https://github.com/dekmeister/discard-sealion
+Author: Declan Walsh
+Author URI: https://github.com/dekmeister
+Description: A minimal WordPress theme for cataloguing and reviewing CD collections with a simple "Kept / Deleted" verdict system.
 Version: 1.0.0
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 8.1
-License: Private Use
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: discard-sealion
+
+Discard Sealion WordPress Theme, Copyright 2026 Declan Walsh
+Discard Sealion is distributed under the terms of the GNU GPL v2 or later.
 */
 
 /* ===================================
