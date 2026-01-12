@@ -91,6 +91,20 @@ function discard_sealion_create_verdict_categories() {
 add_action( 'after_switch_theme', 'discard_sealion_create_verdict_categories' );
 
 /**
+ * Customize category title display
+ */
+function discard_sealion_custom_category_title( $title ) {
+	if ( 'Keep' === $title ) {
+		return 'Kept';
+	}
+	if ( 'Delete' === $title ) {
+		return 'Deleted';
+	}
+	return $title;
+}
+add_filter( 'single_cat_title', 'discard_sealion_custom_category_title' );
+
+/**
  * Load template tags
  */
 require get_template_directory() . '/inc/template-tags.php';
