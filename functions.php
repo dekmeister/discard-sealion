@@ -105,6 +105,41 @@ function discard_sealion_custom_category_title( $title ) {
 add_filter( 'single_cat_title', 'discard_sealion_custom_category_title' );
 
 /**
+ * Add featured image to RSS feed content
+ */
+function discard_sealion_add_featured_image_to_feed( $content ) {
+	if ( ! is_feed() ) {
+		return $content;
+	}
+
+	global $post;
+	if ( ! has_post_thumbnail( $post->ID ) ) {
+		return $content;
+	}
+
+	// Get image URL directly to avoid srcset/sizes attributes
+	$image_url = get_the_post_thumbnail_url( $post->ID, 'large' );
+
+	if ( ! $image_url ) {
+		return $content;
+	}
+
+	// Create clean image HTML without responsive markup
+	$image_id = get_post_thumbnail_id( $post->ID );
+	$alt_text = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+
+	$image_html = sprintf(
+		'<img src="%s" alt="%s" style="max-width: 100%%; height: auto; margin-bottom: 15px;" />',
+		esc_url( $image_url ),
+		esc_attr( $alt_text )
+	);
+
+	return $image_html . $content;
+}
+add_filter( 'the_content_feed', 'discard_sealion_add_featured_image_to_feed' );
+add_filter( 'the_excerpt_rss', 'discard_sealion_add_featured_image_to_feed' );
+
+/**
  * Load template tags
  */
 require get_template_directory() . '/inc/template-tags.php';
