@@ -143,3 +143,8 @@ add_filter( 'the_excerpt_rss', 'discard_sealion_add_featured_image_to_feed' );
  * Load template tags
  */
 require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Load theme options
+ */
+require get_template_directory() . '/inc/theme-options.php';
