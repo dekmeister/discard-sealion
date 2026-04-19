@@ -1,6 +1,6 @@
 === Discard Sealion ===
 Contributors: declanwalsh (dekmeister)
-Tags: blog, custom-background, custom-logo, featured-images, grid-layout, one-column, theme-options, threaded-comments
+Tags: blog, custom-logo, featured-images, grid-layout, one-column, theme-options, threaded-comments
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 8.1
@@ -22,9 +22,11 @@ Key Features:
 * Artist field using WordPress excerpt
 * Verdict filtering via category pages
 * Footer statistics showing total Kept and Deleted counts with links to filtered views
+* Related Sites section in the footer with configurable links to other sites
+* Automatic header navigation generated from published WordPress pages
 * Standard WordPress comments support on reviews
-* About page template support
-* Built-in RSS feed via WordPress core
+* WordPress page template support (About, etc.)
+* Enhanced RSS feed with verdict, featured image, and formatted titles
 * Mobile-first responsive design
 * No external dependencies or plugins required
 
@@ -40,8 +42,9 @@ Design Highlights:
 1. Upload the theme files to `/wp-content/themes/discard-sealion/`
 2. Activate the theme through the 'Appearance > Themes' menu in WordPress
 3. Configure your site title in Settings → General
-4. Set your site icon in Appearance → Customize
+4. Set your site logo in Appearance → Customize
 5. Create your first CD review post with a featured image
+6. Optionally, add related site links under Appearance → Related Sites
 
 == Frequently Asked Questions ==
 
@@ -65,6 +68,14 @@ No, CD reviews use standard WordPress posts to leverage built-in features like c
 
 The artist name is stored in the WordPress excerpt field. You can find this field in the post editor sidebar (it may need to be enabled via the three-dot menu → Preferences → Panels → Excerpt).
 
+= How do I add links to related sites in the footer? =
+
+Go to Appearance → Related Sites in the WordPress admin. You can add site names and URLs, set the section heading, and control how many links appear. Only sites with both a name and URL are displayed.
+
+= What does the RSS feed include? =
+
+Each RSS item includes the album title and artist formatted as "Album - Artist", a description of the format "Album - Artist - Kept/Deleted", the verdict and featured image injected into the content, and category labels displayed as "Kept" or "Deleted".
+
 == Changelog ==
 
 = 1.0.0 =
@@ -73,10 +84,12 @@ The artist name is stored in the WordPress excerpt field. You can find this fiel
 * Single post template for CD reviews
 * Artist field using WordPress excerpt
 * Verdict system using WordPress categories (Keep/Delete)
-* Category archive pages with grid layout
+* Category archive pages with grid layout showing all posts
 * Footer statistics with verdict counts and filter links
-* About page template
+* Related Sites section in footer with admin configuration page
+* WordPress page template for static pages
 * Comments support
+* Enhanced RSS feed: formatted title (Album - Artist), verdict summary in description, featured image in content, category labels mapped to Kept/Deleted
 * Mobile, tablet, and desktop responsive design
 * Automatic category creation on theme activation
 
@@ -97,6 +110,7 @@ This theme uses WordPress built-in features for data storage:
 * **Review**: Standard WordPress post content
 * **Cover Art**: WordPress featured image
 * **Date Reviewed**: WordPress post date
+* **Related Sites**: Stored in WordPress options via the theme settings page (Appearance → Related Sites).
 
 The theme displays verdicts as "Kept" (green) or "Deleted" (red) on individual CD pages and provides category archive pages to view filtered lists.
 
