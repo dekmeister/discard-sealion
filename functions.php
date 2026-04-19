@@ -119,7 +119,7 @@ function discard_sealion_show_all_category_posts( $query ) {
 add_action( 'pre_get_posts', 'discard_sealion_show_all_category_posts' );
 
 /**
- * Add featured image to RSS feed content
+ * Add featured image and verdict to RSS content:encoded
  */
 function discard_sealion_add_featured_image_to_feed( $content ) {
 	if ( ! is_feed() ) {
@@ -127,31 +127,73 @@ function discard_sealion_add_featured_image_to_feed( $content ) {
 	}
 
 	global $post;
-	if ( ! has_post_thumbnail( $post->ID ) ) {
-		return $content;
+	$output = '';
+
+	$verdict = discard_sealion_get_verdict( $post->ID );
+	if ( 'keep' === $verdict ) {
+		$output .= '<p><strong>Verdict: Kept</strong></p>';
+	} elseif ( 'delete' === $verdict ) {
+		$output .= '<p><strong>Verdict: Deleted</strong></p>';
 	}
 
-	// Get image URL directly to avoid srcset/sizes attributes
-	$image_url = get_the_post_thumbnail_url( $post->ID, 'large' );
-
-	if ( ! $image_url ) {
-		return $content;
+	if ( has_post_thumbnail( $post->ID ) ) {
+		$image_url = get_the_post_thumbnail_url( $post->ID, 'large' );
+		if ( $image_url ) {
+			$image_id = get_post_thumbnail_id( $post->ID );
+			$alt_text = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+			$output  .= sprintf(
+				'<img src="%s" alt="%s" />',
+				esc_url( $image_url ),
+				esc_attr( $alt_text )
+			);
+		}
 	}
 
-	// Create clean image HTML without responsive markup
-	$image_id = get_post_thumbnail_id( $post->ID );
-	$alt_text = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+	$output .= $content;
 
-	$image_html = sprintf(
-		'<img src="%s" alt="%s" style="max-width: 100%%; height: auto; margin-bottom: 15px;" />',
-		esc_url( $image_url ),
-		esc_attr( $alt_text )
-	);
-
-	return $image_html . $content;
+	return $output;
 }
 add_filter( 'the_content_feed', 'discard_sealion_add_featured_image_to_feed' );
-add_filter( 'the_excerpt_rss', 'discard_sealion_add_featured_image_to_feed' );
+
+/**
+ * RSS item title: "Album - Artist"
+ */
+function discard_sealion_rss_title( $title ) {
+	$artist = discard_sealion_get_artist();
+	if ( $artist ) {
+		return $title . ' - ' . $artist;
+	}
+	return $title;
+}
+add_filter( 'the_title_rss', 'discard_sealion_rss_title' );
+
+/**
+ * RSS description: lightweight "Album - Artist - Kept/Deleted"
+ */
+function discard_sealion_rss_description( $excerpt ) {
+	$album   = get_the_title();
+	$artist  = discard_sealion_get_artist();
+	$verdict = discard_sealion_get_verdict();
+	if ( 'keep' === $verdict ) {
+		$label = 'Kept';
+	} elseif ( 'delete' === $verdict ) {
+		$label = 'Deleted';
+	} else {
+		$label = 'Verdict Pending';
+	}
+	return esc_html( $album . ' - ' . $artist . ' - ' . $label );
+}
+add_filter( 'the_excerpt_rss', 'discard_sealion_rss_description' );
+
+/**
+ * RSS category labels: Keep→Kept, Delete→Deleted
+ */
+function discard_sealion_rss_category_labels( $cat_list ) {
+	$cat_list = str_replace( '<![CDATA[Keep]]>', '<![CDATA[Kept]]>', $cat_list );
+	$cat_list = str_replace( '<![CDATA[Delete]]>', '<![CDATA[Deleted]]>', $cat_list );
+	return $cat_list;
+}
+add_filter( 'the_category_rss', 'discard_sealion_rss_category_labels' );
 
 /**
  * Load template tags
