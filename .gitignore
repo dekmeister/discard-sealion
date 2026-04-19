@@ -15,3 +15,5 @@ wp-config.php
 # Development files
 /example_files/
 /docs/
+
+CLAUDE.md
