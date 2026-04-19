@@ -105,6 +105,20 @@ function discard_sealion_custom_category_title( $title ) {
 add_filter( 'single_cat_title', 'discard_sealion_custom_category_title' );
 
 /**
+ * Show all posts on Keep/Delete category archives instead of paginating.
+ */
+function discard_sealion_show_all_category_posts( $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+
+	if ( $query->is_category( array( 'keep', 'delete' ) ) ) {
+		$query->set( 'posts_per_page', -1 );
+	}
+}
+add_action( 'pre_get_posts', 'discard_sealion_show_all_category_posts' );
+
+/**
  * Add featured image to RSS feed content
  */
 function discard_sealion_add_featured_image_to_feed( $content ) {
