@@ -24,7 +24,13 @@ while ( have_posts() ) :
 			if ( has_post_thumbnail() ) :
 				?>
 				<div class="page-featured-image">
-					<?php the_post_thumbnail( 'large' ); ?>
+					<?php
+					the_post_thumbnail( 'large', array(
+						'loading'       => 'eager',
+						'fetchpriority' => 'high',
+						'decoding'      => 'async',
+					) );
+					?>
 				</div>
 				<?php
 			endif;
