@@ -151,9 +151,35 @@ function discard_sealion_add_featured_image_to_feed( $content ) {
 
 	$output .= $content;
 
-	return $output;
+	return discard_sealion_rss_sanitize( $output );
 }
 add_filter( 'the_content_feed', 'discard_sealion_add_featured_image_to_feed' );
+
+/**
+ * Sanitise feed HTML: replace iframes with a link to their src, strip
+ * srcset/sizes from images, and drop aspect-ratio from inline styles.
+ */
+function discard_sealion_rss_sanitize( $html ) {
+	$iframe_to_link = static function ( $m ) {
+		if ( preg_match( '#\bsrc\s*=\s*["\']([^"\']+)["\']#i', $m[0], $sm ) ) {
+			$url = esc_url( $sm[1] );
+			if ( $url ) {
+				return '<p><a href="' . $url . '">' . esc_html( $url ) . '</a></p>';
+			}
+		}
+		return '';
+	};
+
+	$html = preg_replace_callback( '#<iframe\b[^>]*>.*?</iframe>#is', $iframe_to_link, $html );
+	$html = preg_replace_callback( '#<iframe\b[^>]*/?>#i', $iframe_to_link, $html );
+
+	$html = preg_replace( '/\s+(srcset|sizes)="[^"]*"/i', '', $html );
+
+	$html = preg_replace( '/\s*aspect-ratio\s*:\s*[^;"\']+;?/i', '', $html );
+	$html = preg_replace( '/\s+style=(["\'])\s*\1/', '', $html );
+
+	return $html;
+}
 
 /**
  * RSS item title: "Album - Artist"
