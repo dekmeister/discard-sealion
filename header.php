@@ -1,3 +1,11 @@
+<?php
+/**
+ * The site header.
+ *
+ * @package Discard_Sealion
+ */
+
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -38,7 +46,7 @@
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
 				</li>
 				<?php
-				// Get all published pages
+				// Get all published pages.
 				$pages = get_pages(
 					array(
 						'sort_column' => 'menu_order, post_title',
@@ -46,7 +54,7 @@
 					)
 				);
 
-				// Display each page in navigation
+				// Display each page in navigation.
 				foreach ( $pages as $page ) {
 					?>
 					<li class="menu-item">

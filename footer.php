@@ -1,3 +1,11 @@
+<?php
+/**
+ * The site footer.
+ *
+ * @package Discard_Sealion
+ */
+
+?>
 </main><!-- .site-main -->
 
 <footer class="site-footer">
@@ -41,7 +49,7 @@
 			<ul>
 				<?php foreach ( $related_sites as $related_site ) : ?>
 					<li>
-						<a href="<?php echo esc_url( $related_site['url'] ); ?>" target="_blank" rel="noopener">
+						<a href="<?php echo esc_url( $related_site['url'] ); ?>" target="_blank" rel="noopener noreferrer">
 							<?php echo esc_html( $related_site['name'] ); ?>
 						</a>
 					</li>

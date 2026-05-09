@@ -12,11 +12,11 @@ get_header();
 
 <div class="cd-grid-container">
 	<?php
-	// Query for published posts
+	// Query for published posts.
 	$args = array(
 		'post_type'      => 'post',
 		'post_status'    => 'publish',
-		'posts_per_page' => -1, // Show all posts
+		'posts_per_page' => -1, // Show all posts.
 		'orderby'        => 'date',
 		'order'          => 'DESC',
 	);

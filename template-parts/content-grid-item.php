@@ -24,7 +24,7 @@
 					)
 				);
 			} else {
-				// Placeholder for posts without featured images
+				// Placeholder for posts without featured images.
 				?>
 				<div class="cd-cover-placeholder">
 					<span class="cd-cover-placeholder-text" aria-hidden="true">?</span>

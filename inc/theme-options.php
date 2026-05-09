@@ -53,16 +53,16 @@ function discard_sealion_sanitize_related_sites( $input ) {
 		'sites'         => array(),
 	);
 
-	// Clamp max_display between 1 and 20
+	// Clamp max_display between 1 and 20.
 	$sanitized['max_display'] = max( 1, min( 20, $sanitized['max_display'] ) );
 
-	// Sanitize sites array
+	// Sanitize sites array.
 	if ( ! empty( $input['sites'] ) && is_array( $input['sites'] ) ) {
 		foreach ( $input['sites'] as $site ) {
 			$name = sanitize_text_field( $site['name'] ?? '' );
 			$url  = esc_url_raw( $site['url'] ?? '' );
 
-			// Only add if both name and URL are provided
+			// Only add if both name and URL are provided.
 			if ( ! empty( $name ) && ! empty( $url ) ) {
 				$sanitized['sites'][] = array(
 					'name' => $name,

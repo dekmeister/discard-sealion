@@ -41,16 +41,10 @@
 				endif;
 				?>
 
-				<?php
-				$verdict_html = discard_sealion_verdict_display();
-				if ( $verdict_html ) :
-					?>
-					<div class="cd-single-verdict">
-						<?php echo $verdict_html; ?>
-					</div>
-					<?php
-				endif;
-				?>
+				<?php $verdict = discard_sealion_verdict_display(); ?>
+				<div class="cd-single-verdict">
+					<span class="verdict verdict-<?php echo esc_attr( $verdict['slug'] ); ?>"><?php echo esc_html( $verdict['label'] ); ?></span>
+				</div>
 			</header>
 
 			<?php

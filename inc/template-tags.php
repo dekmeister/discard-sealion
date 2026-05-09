@@ -18,7 +18,7 @@ function discard_sealion_get_artist( $post_id = 0 ) {
 		$post_id = get_the_ID();
 	}
 
-	return get_the_excerpt( $post_id );
+	return get_post_field( 'post_excerpt', $post_id, 'raw' );
 }
 
 /**
@@ -42,24 +42,29 @@ function discard_sealion_get_verdict( $post_id = 0 ) {
 }
 
 /**
- * Display formatted verdict HTML
- *
- * Outputs the verdict with proper styling and text
+ * Get the verdict slug and human-readable label for display.
  *
  * @param int $post_id Optional. Post ID. Defaults to current post.
- * @return string HTML for the verdict display
+ * @return array{slug:string,label:string} Slug ('keep'|'delete'|'pending') and label.
  */
 function discard_sealion_verdict_display( $post_id = 0 ) {
 	$verdict = discard_sealion_get_verdict( $post_id );
 
 	if ( 'keep' === $verdict ) {
-		return '<span class="verdict verdict-keep">Kept</span>';
+		return array(
+			'slug'  => 'keep',
+			'label' => 'Kept',
+		);
 	} elseif ( 'delete' === $verdict ) {
-		return '<span class="verdict verdict-delete">Deleted</span>';
-	} else {
-		// No verdict set - show pending
-		return '<span class="verdict verdict-pending">Verdict Pending</span>';
+		return array(
+			'slug'  => 'delete',
+			'label' => 'Deleted',
+		);
 	}
+	return array(
+		'slug'  => 'pending',
+		'label' => 'Verdict Pending',
+	);
 }
 
 /**
@@ -81,9 +86,10 @@ function discard_sealion_the_artist( $post_id = 0 ) {
  * @param int $post_id Optional. Post ID. Defaults to current post.
  */
 function discard_sealion_the_verdict( $post_id = 0 ) {
-	$verdict_html = discard_sealion_verdict_display( $post_id );
-
-	if ( $verdict_html ) {
-		echo '<div class="cd-verdict">' . $verdict_html . '</div>';
-	}
+	$verdict = discard_sealion_verdict_display( $post_id );
+	?>
+	<div class="cd-verdict">
+		<span class="verdict verdict-<?php echo esc_attr( $verdict['slug'] ); ?>"><?php echo esc_html( $verdict['label'] ); ?></span>
+	</div>
+	<?php
 }
