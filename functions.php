@@ -23,23 +23,29 @@ function discard_sealion_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// Enable support for custom logo
-	add_theme_support( 'custom-logo', array(
-		'height'      => 100,
-		'width'       => 100,
-		'flex-height' => true,
-		'flex-width'  => true,
-	) );
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => 100,
+			'width'       => 100,
+			'flex-height' => true,
+			'flex-width'  => true,
+		)
+	);
 
 	// Enable HTML5 markup support
-	add_theme_support( 'html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-		'style',
-		'script',
-	) );
+	add_theme_support(
+		'html5',
+		array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+			'style',
+			'script',
+		)
+	);
 
 	// Enable excerpt support for posts
 	add_post_type_support( 'post', 'excerpt' );

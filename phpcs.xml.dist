@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<ruleset name="my-plugin">
+    <description>PHPCS configuration for my-plugin.</description>
+
+    <file>.</file>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+
+    <arg value="ps"/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+
+    <rule ref="WordPress"/>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array" value="discard-sealion"/>
+        </properties>
+    </rule>
+
+    <config name="minimum_wp_version" value="6.5"/>
+
+    <config name="testVersion" value="7.4-"/>
+    <rule ref="PHPCompatibilityWP"/>
+</ruleset>

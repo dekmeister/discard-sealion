@@ -25,11 +25,14 @@ while ( have_posts() ) :
 				?>
 				<div class="page-featured-image">
 					<?php
-					the_post_thumbnail( 'large', array(
-						'loading'       => 'eager',
-						'fetchpriority' => 'high',
-						'decoding'      => 'async',
-					) );
+					the_post_thumbnail(
+						'large',
+						array(
+							'loading'       => 'eager',
+							'fetchpriority' => 'high',
+							'decoding'      => 'async',
+						)
+					);
 					?>
 				</div>
 				<?php

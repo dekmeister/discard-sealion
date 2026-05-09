@@ -1,0 +1,26 @@
+{
+    "name": "dek/discard-sealion",
+    "type": "wordpress-theme",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "DEK-DEBIAN",
+            "email": "dek.other@pm.me"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.13",
+        "wp-coding-standards/wpcs": "^3.3",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.2"
+    },
+    "scripts": {
+        "lint": "phpcs",
+        "fix": "phpcbf"
+    }
+}

@@ -14,12 +14,15 @@
 		<div class="cd-cover">
 			<?php
 			if ( has_post_thumbnail() ) {
-				the_post_thumbnail( 'large', array(
-					'class'    => 'cd-cover-image',
-					'alt'      => esc_attr( get_the_title() ),
-					'loading'  => 'lazy',
-					'decoding' => 'async',
-				) );
+				the_post_thumbnail(
+					'large',
+					array(
+						'class'    => 'cd-cover-image',
+						'alt'      => esc_attr( get_the_title() ),
+						'loading'  => 'lazy',
+						'decoding' => 'async',
+					)
+				);
 			} else {
 				// Placeholder for posts without featured images
 				?>

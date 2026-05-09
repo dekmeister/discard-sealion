@@ -4,12 +4,12 @@
 	<div class="footer-container">
 		<div class="footer-main">
 			<?php
-			$keep_category = get_category_by_slug( 'keep' );
+			$keep_category   = get_category_by_slug( 'keep' );
 			$delete_category = get_category_by_slug( 'delete' );
-			$kept_count = $keep_category ? $keep_category->count : 0;
-			$deleted_count = $delete_category ? $delete_category->count : 0;
-			$keep_url = $keep_category ? get_category_link( $keep_category->term_id ) : '';
-			$delete_url = $delete_category ? get_category_link( $delete_category->term_id ) : '';
+			$kept_count      = $keep_category ? $keep_category->count : 0;
+			$deleted_count   = $delete_category ? $delete_category->count : 0;
+			$keep_url        = $keep_category ? get_category_link( $keep_category->term_id ) : '';
+			$delete_url      = $delete_category ? get_category_link( $delete_category->term_id ) : '';
 			?>
 			<p class="footer-stats">
 				<?php if ( $keep_url ) : ?>
@@ -35,7 +35,7 @@
 			$related_title = $related_sites_options['section_title'] ?? 'Related Sites';
 			$related_max   = $related_sites_options['max_display'] ?? 5;
 			$related_sites = array_slice( $related_sites_options['sites'], 0, $related_max );
-		?>
+			?>
 		<div class="footer-related-sites">
 			<h3><?php echo esc_html( $related_title ); ?></h3>
 			<ul>

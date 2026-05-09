@@ -83,11 +83,14 @@ function discard_sealion_render_options_page() {
 		return;
 	}
 
-	$options = get_option( 'discard_sealion_related_sites', array(
-		'section_title' => 'Related Sites',
-		'max_display'   => 5,
-		'sites'         => array(),
-	) );
+	$options = get_option(
+		'discard_sealion_related_sites',
+		array(
+			'section_title' => 'Related Sites',
+			'max_display'   => 5,
+			'sites'         => array(),
+		)
+	);
 	?>
 	<div class="wrap">
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
@@ -103,10 +106,10 @@ function discard_sealion_render_options_page() {
 					</th>
 					<td>
 						<input type="text"
-						       id="section_title"
-						       name="discard_sealion_related_sites[section_title]"
-						       value="<?php echo esc_attr( $options['section_title'] ); ?>"
-						       class="regular-text" />
+								id="section_title"
+								name="discard_sealion_related_sites[section_title]"
+								value="<?php echo esc_attr( $options['section_title'] ); ?>"
+								class="regular-text" />
 						<p class="description">The heading displayed above the links.</p>
 					</td>
 				</tr>
@@ -116,12 +119,12 @@ function discard_sealion_render_options_page() {
 					</th>
 					<td>
 						<input type="number"
-						       id="max_display"
-						       name="discard_sealion_related_sites[max_display]"
-						       value="<?php echo esc_attr( $options['max_display'] ); ?>"
-						       min="1"
-						       max="20"
-						       class="small-text" />
+								id="max_display"
+								name="discard_sealion_related_sites[max_display]"
+								value="<?php echo esc_attr( $options['max_display'] ); ?>"
+								min="1"
+								max="20"
+								class="small-text" />
 						<p class="description">Limit how many sites appear in the footer (1-20).</p>
 					</td>
 				</tr>
@@ -146,15 +149,15 @@ function discard_sealion_render_options_page() {
 							<tr class="site-row">
 								<td>
 									<input type="text"
-									       name="discard_sealion_related_sites[sites][<?php echo esc_attr( $index ); ?>][name]"
-									       value="<?php echo esc_attr( $site['name'] ); ?>"
-									       class="regular-text site-name" />
+											name="discard_sealion_related_sites[sites][<?php echo esc_attr( $index ); ?>][name]"
+											value="<?php echo esc_attr( $site['name'] ); ?>"
+											class="regular-text site-name" />
 								</td>
 								<td>
 									<input type="url"
-									       name="discard_sealion_related_sites[sites][<?php echo esc_attr( $index ); ?>][url]"
-									       value="<?php echo esc_url( $site['url'] ); ?>"
-									       class="regular-text site-url" />
+											name="discard_sealion_related_sites[sites][<?php echo esc_attr( $index ); ?>][url]"
+											value="<?php echo esc_url( $site['url'] ); ?>"
+											class="regular-text site-url" />
 								</td>
 								<td>
 									<button type="button" class="button remove-site">Remove</button>

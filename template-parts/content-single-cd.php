@@ -14,12 +14,15 @@
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="cd-single-image">
 				<?php
-				the_post_thumbnail( 'large', array(
-					'alt'           => esc_attr( get_the_title() ),
-					'loading'       => 'eager',
-					'fetchpriority' => 'high',
-					'decoding'      => 'async',
-				) );
+				the_post_thumbnail(
+					'large',
+					array(
+						'alt'           => esc_attr( get_the_title() ),
+						'loading'       => 'eager',
+						'fetchpriority' => 'high',
+						'decoding'      => 'async',
+					)
+				);
 				?>
 			</div>
 		<?php endif; ?>
