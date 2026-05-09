@@ -15,6 +15,9 @@ wp-config.php
 # Development files
 /example_files/
 /docs/
+/dist/
 
 CLAUDE.md
 /vendor/
+*CHECK.md
+*REVIEW.md
