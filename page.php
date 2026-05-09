@@ -41,6 +41,14 @@ while ( have_posts() ) :
 
 			<div class="page-content-text">
 				<?php the_content(); ?>
+				<?php
+				wp_link_pages(
+					array(
+						'before' => '<p class="post-pagination">Pages:',
+						'after'  => '</p>',
+					)
+				);
+				?>
 			</div>
 		</div>
 

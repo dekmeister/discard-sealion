@@ -1,0 +1,15 @@
+/.git
+/.github
+/.gitignore
+/.distignore
+/.claude
+/tests
+/vendor
+/composer.json
+/composer.lock
+/phpcs.xml.dist
+/THEME-CHECK.md
+/WP-REVIEW.md
+/CLAUDE.md
+/example_files
+/docs

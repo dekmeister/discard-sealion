@@ -61,6 +61,14 @@
 					<h2 class="cd-thoughts-heading">Thoughts</h2>
 					<div class="cd-thoughts-content">
 						<?php the_content(); ?>
+						<?php
+						wp_link_pages(
+							array(
+								'before' => '<p class="post-pagination">Pages:',
+								'after'  => '</p>',
+							)
+						);
+						?>
 					</div>
 				</div>
 				<?php
