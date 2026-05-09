@@ -45,6 +45,9 @@ add_action( 'admin_init', 'discard_sealion_register_settings' );
 
 /**
  * Sanitize settings
+ *
+ * @param array $input Raw option input.
+ * @return array
  */
 function discard_sealion_sanitize_related_sites( $input ) {
 	$sanitized = array(

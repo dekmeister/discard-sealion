@@ -6,23 +6,23 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 /**
  * Theme setup
  */
 function discard_sealion_setup() {
-	// Add default posts and comments RSS feed links to head
+	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
-	// Let WordPress manage the document title
+	// Let WordPress manage the document title.
 	add_theme_support( 'title-tag' );
 
-	// Enable support for Post Thumbnails on posts
+	// Enable support for Post Thumbnails on posts.
 	add_theme_support( 'post-thumbnails' );
 
-	// Enable support for custom logo
+	// Enable support for custom logo.
 	add_theme_support(
 		'custom-logo',
 		array(
@@ -33,7 +33,7 @@ function discard_sealion_setup() {
 		)
 	);
 
-	// Enable HTML5 markup support
+	// Enable HTML5 markup support.
 	add_theme_support(
 		'html5',
 		array(
@@ -47,7 +47,7 @@ function discard_sealion_setup() {
 		)
 	);
 
-	// Enable excerpt support for posts
+	// Enable excerpt support for posts.
 	add_post_type_support( 'post', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'discard_sealion_setup' );
@@ -56,7 +56,7 @@ add_action( 'after_setup_theme', 'discard_sealion_setup' );
  * Enqueue scripts and styles
  */
 function discard_sealion_scripts() {
-	// Enqueue theme stylesheet
+	// Enqueue theme stylesheet.
 	wp_enqueue_style(
 		'discard-sealion-style',
 		get_stylesheet_uri(),
@@ -70,7 +70,7 @@ add_action( 'wp_enqueue_scripts', 'discard_sealion_scripts' );
  * Create verdict categories on theme activation
  */
 function discard_sealion_create_verdict_categories() {
-	// Create "Keep" category
+	// Create "Keep" category.
 	if ( ! term_exists( 'Keep', 'category' ) ) {
 		wp_insert_term(
 			'Keep',
@@ -82,7 +82,7 @@ function discard_sealion_create_verdict_categories() {
 		);
 	}
 
-	// Create "Delete" category
+	// Create "Delete" category.
 	if ( ! term_exists( 'Delete', 'category' ) ) {
 		wp_insert_term(
 			'Delete',
@@ -98,6 +98,9 @@ add_action( 'after_switch_theme', 'discard_sealion_create_verdict_categories' );
 
 /**
  * Customize category title display
+ *
+ * @param string $title Raw category title.
+ * @return string
  */
 function discard_sealion_custom_category_title( $title ) {
 	if ( 'Keep' === $title ) {
@@ -112,6 +115,8 @@ add_filter( 'single_cat_title', 'discard_sealion_custom_category_title' );
 
 /**
  * Show all posts on Keep/Delete category archives instead of paginating.
+ *
+ * @param WP_Query $query Current query object.
  */
 function discard_sealion_show_all_category_posts( $query ) {
 	if ( is_admin() || ! $query->is_main_query() ) {
@@ -126,6 +131,9 @@ add_action( 'pre_get_posts', 'discard_sealion_show_all_category_posts' );
 
 /**
  * Add featured image and verdict to RSS content:encoded
+ *
+ * @param string $content Existing feed content.
+ * @return string
  */
 function discard_sealion_add_featured_image_to_feed( $content ) {
 	if ( ! is_feed() ) {
@@ -164,6 +172,9 @@ add_filter( 'the_content_feed', 'discard_sealion_add_featured_image_to_feed' );
 /**
  * Sanitise feed HTML: replace iframes with a link to their src, strip
  * srcset/sizes from images, and drop aspect-ratio from inline styles.
+ *
+ * @param string $html Raw HTML to sanitise.
+ * @return string
  */
 function discard_sealion_rss_sanitize( $html ) {
 	$iframe_to_link = static function ( $m ) {
@@ -189,6 +200,9 @@ function discard_sealion_rss_sanitize( $html ) {
 
 /**
  * RSS item title: "Album - Artist"
+ *
+ * @param string $title Original RSS title.
+ * @return string
  */
 function discard_sealion_rss_title( $title ) {
 	$artist = discard_sealion_get_artist();
@@ -201,8 +215,11 @@ add_filter( 'the_title_rss', 'discard_sealion_rss_title' );
 
 /**
  * RSS description: lightweight "Album - Artist - Kept/Deleted"
+ *
+ * @param string $_excerpt Original RSS excerpt (ignored; replaced entirely).
+ * @return string
  */
-function discard_sealion_rss_description( $excerpt ) {
+function discard_sealion_rss_description( $_excerpt ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- filter replaces excerpt entirely.
 	$album   = get_the_title();
 	$artist  = discard_sealion_get_artist();
 	$verdict = discard_sealion_get_verdict();
@@ -219,6 +236,9 @@ add_filter( 'the_excerpt_rss', 'discard_sealion_rss_description' );
 
 /**
  * RSS category labels: Keep→Kept, Delete→Deleted
+ *
+ * @param string $cat_list Category list markup.
+ * @return string
  */
 function discard_sealion_rss_category_labels( $cat_list ) {
 	$cat_list = str_replace( '<![CDATA[Keep]]>', '<![CDATA[Kept]]>', $cat_list );

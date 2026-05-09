@@ -47,7 +47,7 @@
 				</li>
 				<?php
 				// Get all published pages.
-				$pages = get_pages(
+				$nav_pages = get_pages(
 					array(
 						'sort_column' => 'menu_order, post_title',
 						'post_status' => 'publish',
@@ -55,11 +55,11 @@
 				);
 
 				// Display each page in navigation.
-				foreach ( $pages as $page ) {
+				foreach ( $nav_pages as $nav_page ) {
 					?>
 					<li class="menu-item">
-						<a href="<?php echo esc_url( get_permalink( $page ) ); ?>">
-							<?php echo esc_html( $page->post_title ); ?>
+						<a href="<?php echo esc_url( get_permalink( $nav_page ) ); ?>">
+							<?php echo esc_html( $nav_page->post_title ); ?>
 						</a>
 					</li>
 					<?php
