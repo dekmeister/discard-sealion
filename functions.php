@@ -271,3 +271,8 @@ require get_template_directory() . '/inc/theme-options.php';
  * Load recent-comments data helper
  */
 require get_template_directory() . '/inc/recent-comments.php';
+
+/**
+ * Load NO DISC memorial banner
+ */
+require get_template_directory() . '/inc/no-disc-banner.php';
