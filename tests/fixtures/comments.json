@@ -1,0 +1,82 @@
+[
+  {
+    "post_title": "Graceland",
+    "author": "Mum",
+    "author_email": "mum@example.com",
+    "content": "I remember listening to this album on long drives when you were little. The Ladysmith Black Mambazo tracks still give me chills. Lovely to see it make the list!",
+    "parent_author": null,
+    "gmt_offset_minutes": -2880
+  },
+  {
+    "post_title": "Graceland",
+    "author": "Dad",
+    "author_email": "dad@example.com",
+    "content": "Agree with Mum completely — this one deserves its place. I had the cassette.",
+    "parent_author": "Mum",
+    "gmt_offset_minutes": -2700
+  },
+  {
+    "post_title": "Graceland",
+    "author": "Mum",
+    "author_email": "mum@example.com",
+    "content": "Cassette! I forgot about that. Did we still have the player by then?",
+    "parent_author": "Dad",
+    "gmt_offset_minutes": -2640
+  },
+  {
+    "post_title": "Kind of Blue",
+    "author": "Mum",
+    "author_email": "mum@example.com",
+    "content": "I wasn't sure about jazz at first but this one is really beautiful. Very calming. Glad it's in the keep pile.",
+    "parent_author": null,
+    "gmt_offset_minutes": -1440
+  },
+  {
+    "post_title": "Kind of Blue",
+    "author": "Dad",
+    "author_email": "dad@example.com",
+    "content": "The opening track alone is worth it. Put it on when you want to think clearly.",
+    "parent_author": null,
+    "gmt_offset_minutes": -1380
+  },
+  {
+    "post_title": "Blue",
+    "author": "Mum",
+    "author_email": "mum@example.com",
+    "content": "River is one of my favourite songs of all time. This review brought it all back.",
+    "parent_author": null,
+    "gmt_offset_minutes": -720
+  },
+  {
+    "post_title": "Dummy",
+    "author": "Dad",
+    "author_email": "dad@example.com",
+    "content": "Sour Times was everywhere when this came out. Good to see it get proper credit.",
+    "parent_author": null,
+    "gmt_offset_minutes": -360
+  },
+  {
+    "post_title": "OK Computer",
+    "author": "Mum",
+    "author_email": "mum@example.com",
+    "content": "You played this constantly on the car stereo on that holiday. No Surprises still reminds me of that trip.",
+    "parent_author": null,
+    "gmt_offset_minutes": -120
+  },
+  {
+    "post_title": "OK Computer",
+    "author": "Dad",
+    "author_email": "dad@example.com",
+    "content": "Good shout. I always preferred The Bends myself but I can see why this one made the cut.",
+    "parent_author": "Mum",
+    "gmt_offset_minutes": -60
+  },
+  {
+    "post_title": "Pet Sounds",
+    "author": "Mum",
+    "author_email": "mum@example.com",
+    "content": "God Only Knows is perfect. This is the right verdict.",
+    "parent_author": null,
+    "gmt_offset_minutes": -10
+  }
+]

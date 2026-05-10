@@ -61,8 +61,18 @@ function discard_sealion_scripts() {
 		'discard-sealion-style',
 		get_stylesheet_uri(),
 		array(),
-		wp_get_theme()->get( 'Version' )
+		(string) filemtime( get_stylesheet_directory() . '/style.css' )
 	);
+
+	if ( is_page_template( 'page-recent-comments.php' ) ) {
+		wp_enqueue_script(
+			'discard-sealion-recent-comments',
+			get_template_directory_uri() . '/assets/js/recent-comments.js',
+			array(),
+			(string) filemtime( get_template_directory() . '/assets/js/recent-comments.js' ),
+			true
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'discard_sealion_scripts' );
 
@@ -256,3 +266,8 @@ require get_template_directory() . '/inc/template-tags.php';
  * Load theme options
  */
 require get_template_directory() . '/inc/theme-options.php';
+
+/**
+ * Load recent-comments data helper
+ */
+require get_template_directory() . '/inc/recent-comments.php';
