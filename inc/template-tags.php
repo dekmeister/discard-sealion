@@ -7,6 +7,10 @@
  * @package Discard_Sealion
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Get the artist name for the current post
  *

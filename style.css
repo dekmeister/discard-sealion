@@ -4,6 +4,7 @@ Theme URI: https://github.com/dekmeister/discard-sealion
 Author: Declan Walsh
 Author URI: https://github.com/dekmeister
 Description: A minimal WordPress theme for cataloguing and reviewing CD collections with a simple "Kept / Deleted" verdict system.
+Tags: white, one-column, custom-logo, custom-background, featured-images, blog, personal
 Version: 1.0.0
 Requires at least: 6.0
 Tested up to: 6.4
@@ -1242,4 +1243,84 @@ img {
 		font-size: 8px;
 		letter-spacing: 1px;
 	}
+}
+
+/* ===================================
+   WordPress Core Classes
+   =================================== */
+
+.alignleft {
+	float: left;
+	margin: 0 var(--spacing-sm) var(--spacing-sm) 0;
+}
+
+.alignright {
+	float: right;
+	margin: 0 0 var(--spacing-sm) var(--spacing-sm);
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wp-caption {
+	max-width: 100%;
+	margin-bottom: var(--spacing-sm);
+}
+
+.wp-caption img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+.wp-caption-text,
+.gallery-caption {
+	font-size: 0.875rem;
+	color: var(--color-text-light);
+	text-align: center;
+	margin-top: var(--spacing-xs);
+}
+
+.sticky {
+	display: block;
+}
+
+.bypostauthor {
+	display: block;
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	clip-path: none;
+	color: #21759b;
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
 }

@@ -34,7 +34,7 @@
 			?>
 		</div>
 		<div class="cd-grid-item-overlay">
-			<h2 class="cd-grid-item-title"><?php the_title(); ?></h2>
+			<h2 class="cd-grid-item-title"><?php echo esc_html( get_the_title() ); ?></h2>
 		</div>
 	</a>
 </article>

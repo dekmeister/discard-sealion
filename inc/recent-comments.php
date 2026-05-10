@@ -51,17 +51,20 @@ function discard_sealion_get_recent_comments_page( $page ) {
 		)
 	);
 
-	$recent_objs = get_comments(
-		array(
-			'status'      => 'approve',
-			'type'        => 'comment',
-			'date_query'  => $date_query,
-			'post_status' => 'publish',
-			'number'      => 0,
+	global $wpdb;
+	$since     = gmdate( 'Y-m-d H:i:s', strtotime( '-30 days' ) );
+	$posts_30d = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT COUNT(DISTINCT c.comment_post_ID)
+			 FROM {$wpdb->comments} c
+			 INNER JOIN {$wpdb->posts} p ON p.ID = c.comment_post_ID
+			 WHERE c.comment_approved = '1'
+			   AND c.comment_type = 'comment'
+			   AND c.comment_date_gmt >= %s
+			   AND p.post_status = 'publish'",
+			$since
 		)
 	);
-
-	$posts_30d = count( array_unique( wp_list_pluck( $recent_objs, 'comment_post_ID' ) ) );
 
 	return array(
 		'rows'      => $rows,

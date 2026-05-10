@@ -30,7 +30,7 @@
 		<div class="cd-single-details">
 
 			<header class="cd-single-header">
-				<h1 class="cd-single-title"><?php the_title(); ?></h1>
+				<h1 class="cd-single-title"><?php echo esc_html( get_the_title() ); ?></h1>
 
 				<?php
 				$artist = discard_sealion_get_artist();
