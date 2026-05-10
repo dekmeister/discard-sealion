@@ -63,7 +63,15 @@ $rc_parent_post = $args['parent_post'];
 			<span class="rc-sep" aria-hidden="true">&middot;</span>
 			<?php echo esc_html( get_comment_date( 'g:i a', $rc_comment ) ); ?>
 		</time>
-		<a class="rc-reply-link" href="<?php echo esc_url( get_comment_link( $rc_comment ) ); ?>">Reply on CD page &rarr;</a>
+		<a class="rc-reply-link" href="<?php
+			echo esc_url(
+				add_query_arg(
+					'replytocom',
+					$rc_comment->comment_ID,
+					get_permalink( $rc_parent_post )
+				) . '#respond'
+			);
+		?>">Reply on CD page &rarr;</a>
 	</div>
 
 </article>
