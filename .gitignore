@@ -16,6 +16,7 @@ wp-config.php
 /example_files/
 /docs/
 /dist/
+/bin/deploy/
 
 CLAUDE.md
 /vendor/
