@@ -41,7 +41,12 @@
 		</div>
 
 		<nav class="site-navigation" aria-label="Primary Navigation">
-			<ul class="nav-menu">
+			<button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav-menu" aria-label="<?php esc_attr_e( 'Toggle navigation menu', 'discard-sealion' ); ?>">
+				<span class="menu-toggle-bar"></span>
+				<span class="menu-toggle-bar"></span>
+				<span class="menu-toggle-bar"></span>
+			</button>
+			<ul class="nav-menu" id="primary-nav-menu">
 				<li class="menu-item">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
 				</li>

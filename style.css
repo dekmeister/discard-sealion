@@ -51,7 +51,8 @@ Discard Sealion is distributed under the terms of the GNU GPL v2 or later.
 	/* Grid */
 	--grid-columns-mobile: 2;
 	--grid-columns-tablet: 3;
-	--grid-columns-desktop: 4;
+	--grid-columns-large: 4;
+	--grid-columns-desktop: 5;
 	--grid-gap: var(--spacing-md);
 }
 
@@ -125,7 +126,7 @@ img {
 }
 
 .header-container {
-	max-width: 1200px;
+	max-width: 1600px;
 	margin: 0 auto;
 	padding: 0 var(--spacing-md);
 	display: flex;
@@ -207,12 +208,37 @@ img {
 	text-decoration: none;
 }
 
+.menu-toggle {
+	display: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: var(--spacing-xs);
+	flex-direction: column;
+	gap: 5px;
+	align-items: center;
+	justify-content: center;
+}
+
+.menu-toggle-bar {
+	display: block;
+	width: 24px;
+	height: 2px;
+	background-color: var(--color-text);
+	border-radius: 2px;
+	transition: background-color 0.2s ease;
+}
+
+.menu-toggle:hover .menu-toggle-bar {
+	background-color: var(--color-link);
+}
+
 /* ===================================
    Main Content Area
    =================================== */
 
 .site-main {
-	max-width: 1200px;
+	max-width: 1600px;
 	margin: 0 auto;
 	padding: 0 var(--spacing-md);
 	min-height: 60vh;
@@ -230,7 +256,7 @@ img {
 }
 
 .footer-container {
-	max-width: 1200px;
+	max-width: 1600px;
 	margin: 0 auto;
 	padding: 0 var(--spacing-md);
 	display: flex;
@@ -1042,12 +1068,21 @@ img {
    Responsive Styles
    =================================== */
 
-/* Tablet breakpoint */
-@media ( max-width: 1199px ) {
+/* Large breakpoint: 5 → 4 columns */
+@media ( max-width: 1400px ) {
+	.cd-grid {
+		grid-template-columns: repeat( var(--grid-columns-large), 1fr );
+	}
+}
+
+/* Tablet breakpoint: 4 → 3 columns + single-page layout */
+@media ( max-width: 999px ) {
 	.cd-grid {
 		grid-template-columns: repeat( var(--grid-columns-tablet), 1fr );
 	}
+}
 
+@media ( max-width: 1199px ) {
 	.cd-single-content {
 		grid-template-columns: 1fr;
 		gap: var(--spacing-lg);
@@ -1071,17 +1106,30 @@ img {
 /* Mobile breakpoint */
 @media ( max-width: 767px ) {
 	.header-container {
-		flex-direction: column;
-		align-items: flex-start;
+		flex-direction: row;
+		align-items: center;
 	}
 
 	.site-navigation {
-		width: 100%;
+		flex: 1;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		width: auto;
+	}
+
+	.menu-toggle {
+		display: flex;
 	}
 
 	.nav-menu {
-		width: 100%;
+		display: none;
+		flex-direction: column;
+		flex-basis: 100%;
 		justify-content: flex-start;
+	}
+
+	.site-navigation.is-open .nav-menu {
+		display: flex;
 	}
 
 	.cd-grid {

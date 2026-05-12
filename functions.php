@@ -64,6 +64,14 @@ function discard_sealion_scripts() {
 		(string) filemtime( get_stylesheet_directory() . '/style.css' )
 	);
 
+	wp_enqueue_script(
+		'discard-sealion-nav',
+		get_template_directory_uri() . '/assets/js/nav.js',
+		array(),
+		(string) filemtime( get_template_directory() . '/assets/js/nav.js' ),
+		true
+	);
+
 	if ( is_page_template( 'page-recent-comments.php' ) ) {
 		wp_enqueue_script(
 			'discard-sealion-recent-comments',
