@@ -15,7 +15,7 @@
 			<?php
 			if ( has_post_thumbnail() ) {
 				the_post_thumbnail(
-					'large',
+					'cd-cover',
 					array(
 						'class'    => 'cd-cover-image',
 						'alt'      => esc_attr( get_the_title() ),

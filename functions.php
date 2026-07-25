@@ -22,6 +22,31 @@ function discard_sealion_setup() {
 	// Enable support for Post Thumbnails on posts.
 	add_theme_support( 'post-thumbnails' );
 
+	/*
+	 * Sizes matching where the theme actually paints images.
+	 *
+	 * Without these the srcset ladder has no rung near the displayed size, so
+	 * the browser is forced up to the next one it has: WordPress's `medium` is
+	 * bounded on both axes, which makes it only 225px wide for a portrait
+	 * cover, below every grid cell, so `large` (768px) was being fetched for a
+	 * cell at most 348px wide. A correct srcset cannot help if the ladder has
+	 * no candidate at the right size.
+	 *
+	 * Hard crop throughout: .cd-cover-image and .rc-thumb img both use
+	 * object-fit: cover inside a square, so the pixels outside the square are
+	 * discarded at paint time anyway. Cropping at generation stores only what
+	 * is painted, which saves again on top of the downscale.
+	 */
+
+	// The 1:1 grid cell (style.css:355-390). Widest cell across all
+	// breakpoints is 348px (2 columns at 767px), so 360 covers every case.
+	add_image_size( 'cd-cover', 360, 360, true );
+	add_image_size( 'cd-cover-2x', 720, 720, true );
+
+	// The 72px .rc-thumb img on the Recent Comments feed (style.css:823-829).
+	add_image_size( 'cd-comment', 72, 72, true );
+	add_image_size( 'cd-comment-2x', 144, 144, true );
+
 	// Enable support for custom logo.
 	add_theme_support(
 		'custom-logo',
@@ -51,6 +76,54 @@ function discard_sealion_setup() {
 	add_post_type_support( 'post', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'discard_sealion_setup' );
+
+/**
+ * Declare the real grid cell width for the square cover sizes.
+ *
+ * WordPress defaults `sizes` to the candidate's own width, which tells the
+ * browser the image fills that many pixels and invites it up a rung. The grid
+ * cell is far smaller, and it changes at every breakpoint (style.css:1072-1137,
+ * 5/4/3/2 columns inside a 1600px container with 24px gaps and 24px padding).
+ *
+ * Scoped by matching the candidate's dimensions against the registered cover
+ * sizes, because this filter receives a [width, height] array rather than the
+ * size name. The single-CD and page templates ask for `large` and legitimately
+ * want a large image, so they must not be caught by this.
+ *
+ * WordPress >= 6.7 prepends `auto` for lazy images, which reports the real
+ * laid-out width and beats any guess made here; the list below is what
+ * everything else falls back to.
+ *
+ * @param string       $sizes A source size value for use in a `sizes` attribute.
+ * @param int[]|string $size  Requested image size, as [width, height] in pixels.
+ * @return string
+ */
+function discard_sealion_cover_image_sizes( $sizes, $size ) {
+	if ( ! is_array( $size ) || ! isset( $size[0], $size[1] ) ) {
+		return $sizes;
+	}
+
+	$registered = wp_get_registered_image_subsizes();
+
+	foreach ( array( 'cd-cover', 'cd-cover-2x' ) as $name ) {
+		if ( ! isset( $registered[ $name ] ) ) {
+			continue;
+		}
+
+		if ( (int) $size[0] === (int) $registered[ $name ]['width']
+			&& (int) $size[1] === (int) $registered[ $name ]['height'] ) {
+			/*
+			 * The trailing fixed value, not a vw unit: above 1600px the
+			 * container stops growing, so (1552 - 4*24) / 5 = 291px however
+			 * wide the viewport gets.
+			 */
+			return '(max-width: 767px) 50vw, (max-width: 999px) 33vw, (max-width: 1400px) 25vw, (max-width: 1599px) 20vw, 291px';
+		}
+	}
+
+	return $sizes;
+}
+add_filter( 'wp_calculate_image_sizes', 'discard_sealion_cover_image_sizes', 10, 2 );
 
 /**
  * Enqueue scripts and styles

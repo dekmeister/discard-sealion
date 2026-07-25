@@ -18,7 +18,7 @@ $rc_parent_post = $args['parent_post'];
 		<?php
 		echo get_the_post_thumbnail(
 			$rc_parent_post,
-			array( 144, 144 ),
+			'cd-comment',
 			array(
 				'loading' => 'lazy',
 				'alt'     => '',
