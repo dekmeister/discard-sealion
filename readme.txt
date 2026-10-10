@@ -78,20 +78,7 @@ Each RSS item includes the album title and artist formatted as "Album - Artist",
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial release
-* Grid homepage with responsive CD cover layout
-* Single post template for CD reviews
-* Artist field using WordPress excerpt
-* Verdict system using WordPress categories (Keep/Delete)
-* Category archive pages with grid layout showing all posts
-* Footer statistics with verdict counts and filter links
-* Related Sites section in footer with admin configuration page
-* WordPress page template for static pages
-* Comments support
-* Enhanced RSS feed: formatted title (Album - Artist), verdict summary in description, featured image in content, category labels mapped to Kept/Deleted
-* Mobile, tablet, and desktop responsive design
-* Automatic category creation on theme activation
+See CHANGELOG.md in the theme directory, or https://github.com/dekmeister/discard-sealion/blob/main/CHANGELOG.md.
 
 == Upgrade Notice ==
 
