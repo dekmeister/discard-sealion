@@ -24,6 +24,13 @@ fi
 
 cd "$ROOT"
 
+# style.css is the single source of truth for the theme version.
+VERSION="$(sed -n 's/^Version:[[:space:]]*//p' "$ROOT/style.css" | head -n1)"
+if [ -z "$VERSION" ]; then
+	echo "error: could not read Version from style.css" >&2
+	exit 1
+fi
+
 rm -rf "$STAGE" "$ZIP"
 mkdir -p "$STAGE"
 
@@ -39,4 +46,4 @@ cd "$DIST"
 zip -rq "$ZIP" "$SLUG"
 rm -rf "$STAGE"
 
-echo "Built: $ZIP"
+echo "Built: $ZIP (version $VERSION)"
