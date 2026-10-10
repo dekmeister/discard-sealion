@@ -474,6 +474,7 @@ img {
 	position: sticky;
 	top: var(--spacing-lg);
 	align-self: start;
+	margin: 0;
 }
 
 .cd-single-image img {
@@ -481,6 +482,14 @@ img {
 	height: auto;
 	border-radius: 4px;
 	box-shadow: 0 4px 12px rgba( 0, 0, 0, 0.1 );
+}
+
+.cd-single-image-caption {
+	margin-top: var(--spacing-xs);
+	font-size: 0.875rem;
+	font-style: italic;
+	line-height: var(--line-height-base);
+	color: var(--color-text-light);
 }
 
 .cd-single-details {

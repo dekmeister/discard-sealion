@@ -12,7 +12,7 @@
 	<div class="cd-single-content">
 
 		<?php if ( has_post_thumbnail() ) : ?>
-			<div class="cd-single-image">
+			<figure class="cd-single-image">
 				<?php
 				the_post_thumbnail(
 					'large',
@@ -24,7 +24,11 @@
 					)
 				);
 				?>
-			</div>
+				<?php $caption = get_the_post_thumbnail_caption(); ?>
+				<?php if ( $caption ) : ?>
+					<figcaption class="cd-single-image-caption"><?php echo wp_kses_post( $caption ); ?></figcaption>
+				<?php endif; ?>
+			</figure>
 		<?php endif; ?>
 
 		<div class="cd-single-details">
