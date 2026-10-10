@@ -22,3 +22,5 @@ CLAUDE.md
 /vendor/
 *CHECK.md
 *REVIEW.md
+
+/tests/wp-dev*

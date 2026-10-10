@@ -43,9 +43,17 @@ function discard_sealion_setup() {
 	add_image_size( 'cd-cover', 360, 360, true );
 	add_image_size( 'cd-cover-2x', 720, 720, true );
 
-	// The 72px .rc-thumb img on the Recent Comments feed (style.css:823-829).
+	/*
+	 * The 72px .rc-thumb img on the Recent Comments feed (style.css:823-829).
+	 *
+	 * Deliberately no 2x companion here, unlike cd-cover above. Core's
+	 * `thumbnail` is 150x150 and also a hard 1:1 crop, so it already sits 4%
+	 * from where a `cd-comment-2x` at 144 would land — the browser picks 150w
+	 * for the DPR 2 case and serves it at 1.04x the ideal. Registering 144 as
+	 * well would add a rung to every 1:1 srcset on the site that nothing would
+	 * ever choose over 150, and ~149 generated files to carry it.
+	 */
 	add_image_size( 'cd-comment', 72, 72, true );
-	add_image_size( 'cd-comment-2x', 144, 144, true );
 
 	// Enable support for custom logo.
 	add_theme_support(
@@ -124,6 +132,31 @@ function discard_sealion_cover_image_sizes( $sizes, $size ) {
 	return $sizes;
 }
 add_filter( 'wp_calculate_image_sizes', 'discard_sealion_cover_image_sizes', 10, 2 );
+
+/**
+ * Declare the painted width of the custom logo.
+ *
+ * Core's get_custom_logo() hardcodes 'full' (wp-includes/general-template.php),
+ * and add_theme_support( 'custom-logo', [...] ) registers no image size — it reads
+ * those height/width args only for the Customizer cropper. So the logo is served
+ * at its uploaded size, and it carries fetchpriority="high" on every page of the
+ * site. The asset is 512x512 for something painted at 60px.
+ *
+ * The size slug cannot be filtered, but `sizes` can, and that is enough: core
+ * still generates the srcset from every 1:1 rung, and only falls back to its own
+ * computed `sizes` when none was supplied (wp-includes/media.php, in
+ * wp_get_attachment_image()). Declaring the real width lets the browser take the
+ * 72w rung at DPR 1 and thumbnail's 150w at DPR 2 instead of the full file.
+ *
+ * @param array $attr Attributes for the image markup.
+ * @return array
+ */
+function discard_sealion_custom_logo_attributes( $attr ) {
+	// style.css:150-153 — .custom-logo { max-height: 60px; width: auto }.
+	$attr['sizes'] = '60px';
+	return $attr;
+}
+add_filter( 'get_custom_logo_image_attributes', 'discard_sealion_custom_logo_attributes' );
 
 /**
  * Enqueue scripts and styles
