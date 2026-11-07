@@ -760,8 +760,10 @@ img {
 /* Nested comments */
 .comment-list .children {
 	list-style: none;
-	margin-left: var(--spacing-xl);
 	margin-top: var(--spacing-lg);
+	margin-left: var(--spacing-sm);
+	padding: 0 0 0 var(--spacing-sm);
+	border-left: 2px solid var(--color-border);
 }
 
 /* ===================================
@@ -1180,7 +1182,15 @@ img {
 	}
 
 	.comment-list .children {
-		margin-left: var(--spacing-md);
+		margin-left: 0;
+		padding-left: var(--spacing-xs);
+	}
+
+	/* Stop indenting beyond level 3 so deep replies keep a usable width. */
+	.comment-list .depth-3 .children {
+		margin-left: 0;
+		padding-left: 0;
+		border-left: none;
 	}
 
 	.comment-body {
