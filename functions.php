@@ -188,6 +188,16 @@ function discard_sealion_scripts() {
 		);
 	}
 
+	if ( is_page_template( 'page-recent-comments.php' ) || ( is_singular() && ( comments_open() || have_comments() ) ) ) {
+		wp_enqueue_script(
+			'discard-sealion-local-time',
+			get_template_directory_uri() . '/assets/js/local-time.js',
+			array(),
+			(string) filemtime( get_template_directory() . '/assets/js/local-time.js' ),
+			true
+		);
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

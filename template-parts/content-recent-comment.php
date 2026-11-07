@@ -56,12 +56,13 @@ $rc_parent_post = $args['parent_post'];
 	</div>
 
 	<div class="rc-actions">
+		<?php $rc_timestamp = (int) strtotime( $rc_comment->comment_date_gmt . ' UTC' ); ?>
 		<time class="rc-time"
-			datetime="<?php echo esc_attr( get_comment_date( 'c', $rc_comment ) ); ?>"
-			data-rc-gmt="<?php echo esc_attr( get_comment_date( 'U', $rc_comment ) ); ?>">
-			<?php echo esc_html( get_comment_date( 'M j', $rc_comment ) ); ?>
+			datetime="<?php echo esc_attr( gmdate( 'c', $rc_timestamp ) ); ?>"
+			data-rc-gmt="<?php echo esc_attr( (string) $rc_timestamp ); ?>">
+			<span data-rc-date><?php echo esc_html( wp_date( 'M j', $rc_timestamp ) ); ?></span>
 			<span class="rc-sep" aria-hidden="true">&middot;</span>
-			<?php echo esc_html( get_comment_date( 'g:i a', $rc_comment ) ); ?>
+			<span data-rc-clock><?php echo esc_html( wp_date( 'g:i a T', $rc_timestamp ) ); ?></span>
 		</time>
 		<a class="rc-reply-link" href="<?php
 			echo esc_url(
