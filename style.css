@@ -603,43 +603,65 @@ img {
 }
 
 .comment-list .comment {
-	margin-bottom: var(--spacing-lg);
-	padding-bottom: var(--spacing-lg);
+	margin-bottom: var(--spacing-md);
+	padding-bottom: var(--spacing-md);
 	border-bottom: 1px solid var(--color-border);
+}
+
+/* Replies are separated by the thread line, not a rule. */
+.comment-list .children .comment {
+	padding-bottom: 0;
+	border-bottom: none;
 }
 
 .comment-list .comment:last-child {
 	border-bottom: none;
 }
 
-.comment-body {
-	display: flex;
-	gap: var(--spacing-md);
+.comment-meta {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	column-gap: var(--spacing-xs);
+	align-items: center;
+	margin-bottom: var(--spacing-xs);
+}
+
+/* Let the avatar, name and date sit directly in the .comment-meta grid:
+   avatar on the left spanning both rows, name above date on the right. */
+.comment-author {
+	display: contents;
 }
 
 .comment-author .avatar {
+	grid-column: 1;
+	grid-row: 1 / span 2;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
-	flex-shrink: 0;
+}
+
+.comment-author .fn,
+.comment-metadata {
+	grid-column: 2;
+}
+
+.comment-author .says {
+	display: none;
 }
 
 .comment-content-wrap {
 	flex: 1;
 }
 
-.comment-author {
-	margin-bottom: var(--spacing-xs);
-}
-
 .comment-author .fn {
 	font-weight: 600;
-	font-size: var(--font-size-lg);
+	font-size: var(--font-size-base);
 	font-style: normal;
 	color: var(--color-text);
 }
 
 .comment-metadata {
-	margin-bottom: var(--spacing-sm);
-	font-size: 0.875rem;
+	font-size: 0.8125rem;
 }
 
 .comment-metadata a {
@@ -1186,16 +1208,20 @@ img {
 		padding-left: var(--spacing-xs);
 	}
 
+	.comment-list .comment {
+		margin-bottom: var(--spacing-sm);
+		padding-bottom: var(--spacing-sm);
+	}
+
+	.comment-list .children {
+		margin-top: var(--spacing-sm);
+	}
+
 	/* Stop indenting beyond level 3 so deep replies keep a usable width. */
 	.comment-list .depth-3 .children {
 		margin-left: 0;
 		padding-left: 0;
 		border-left: none;
-	}
-
-	.comment-body {
-		flex-direction: column;
-		gap: var(--spacing-sm);
 	}
 
 	.page-title {

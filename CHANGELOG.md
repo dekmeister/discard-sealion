@@ -8,6 +8,9 @@ follows [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Comments are more compact: the avatar sits beside the author name and date
+  (name above date) instead of above the text, at 40px, with tighter spacing
+  between comments.
 - Comment times are shown in the visitor's local timezone, labelled with the
   zone (e.g. "3:45 pm EST"). Without JavaScript they fall back to site time.
 

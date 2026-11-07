@@ -34,7 +34,7 @@ if ( post_password_required() ) {
 				array(
 					'style'       => 'ol',
 					'short_ping'  => true,
-					'avatar_size' => 60,
+					'avatar_size' => 80,
 				)
 			);
 			?>
