@@ -8,6 +8,9 @@ follows [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Nested comments use far less width on phones: replies are marked by a thin
+  vertical line at every level with a small, constant indent, replacing the
+  deep indentation (which also carried unintended default list padding).
 - Comments are more compact: the avatar sits beside the author name and date
   (name above date) instead of above the text, at 40px, with tighter spacing
   between comments.
