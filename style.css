@@ -697,6 +697,16 @@ img {
 	text-decoration: underline;
 }
 
+.reply-limit-note {
+	display: inline-block;
+	padding: 0.15rem var(--spacing-xs);
+	border: 1px dashed var(--color-border);
+	border-radius: 3px;
+	font-size: 0.8125rem;
+	font-style: italic;
+	color: var(--color-text-light);
+}
+
 .comment-respond {
 	margin-top: var(--spacing-xl);
 }

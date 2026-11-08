@@ -6,6 +6,12 @@ follows [Semantic Versioning](https://semver.org/).
 
 ## Unreleased
 
+### Added
+
+- Comments that have reached the maximum reply depth (Settings → Discussion)
+  now show a "Reply limit reached for this thread" note where the Reply link
+  would be, instead of silently omitting it.
+
 ### Changed
 
 - Nested comments use far less width on phones: replies are marked by a thin
