@@ -99,31 +99,34 @@ function discard_sealion_the_verdict( $post_id = 0 ) {
 }
 
 /**
- * Explain why there is no Reply link on a comment at the maximum nesting depth.
+ * Close a comment <li>, first explaining why there is no Reply link when the
+ * comment sits at the maximum nesting depth.
  *
- * Core runs the `comment_reply_link` filter with an empty link when a comment
- * has reached the "Maximum depth" set in Settings > Discussion.
+ * Used as the `end-callback` for wp_list_comments(). Core returns before
+ * running the `comment_reply_link` filter at max depth, so the notice has to
+ * be output here instead. A comment at max depth has no children, so the
+ * notice lands directly beneath the comment.
  *
- * @param string     $link    Reply link HTML (empty at max depth).
- * @param array      $args    Reply link arguments.
- * @param WP_Comment $comment Comment being replied to.
- * @param WP_Post    $post    Post the comment belongs to.
- * @return string
+ * @param WP_Comment $comment Comment being closed.
+ * @param array      $args    wp_list_comments() arguments.
+ * @param int        $depth   Zero-based depth of the comment.
  */
-function discard_sealion_max_depth_notice( $link, $args, $comment, $post ) {
-	if ( '' !== $link || ! get_option( 'thread_comments' ) || ! comments_open( $post ) ) {
-		return $link;
-	}
-
-	$depth     = isset( $args['depth'] ) ? (int) $args['depth'] : 0;
+function discard_sealion_comment_end( $comment, $args, $depth ) {
 	$max_depth = isset( $args['max_depth'] ) ? (int) $args['max_depth'] : 0;
+	$is_plain  = in_array( $comment->comment_type, array( '', 'comment' ), true );
 
-	if ( $max_depth < 1 || $depth < $max_depth ) {
-		return $link;
+	if (
+		$is_plain
+		&& get_option( 'thread_comments' )
+		&& $max_depth > 0
+		&& ( (int) $depth + 1 ) >= $max_depth
+		&& '1' === (string) $comment->comment_approved
+		&& comments_open( $comment->comment_post_ID )
+	) {
+		?>
+		<div class="reply reply-limit"><span class="reply-limit-note"><?php esc_html_e( 'Reply limit reached for this thread', 'discard-sealion' ); ?></span></div>
+		<?php
 	}
 
-	return '<div class="reply reply-limit"><span class="reply-limit-note">'
-		. esc_html__( 'Reply limit reached for this thread', 'discard-sealion' )
-		. '</span></div>';
+	echo "</li>\n";
 }
-add_filter( 'comment_reply_link', 'discard_sealion_max_depth_notice', 10, 4 );
