@@ -81,6 +81,9 @@ See CHANGELOG.md in the theme directory, or https://github.com/dekmeister/discar
 
 == Upgrade Notice ==
 
+= 1.1.0 =
+Compact, mobile-friendly nested comments, local comment times, and a note when a thread reaches the reply limit.
+
 = 1.0.0 =
 Initial release.
 
